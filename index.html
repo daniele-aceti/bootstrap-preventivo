@@ -11,11 +11,12 @@
     <header>
         <nav class="navbar navbar-dark navbar-expand-lg bg-dark">
             <div class="container">
-              <h3 class="navbar-toggler text-light" role="button" href="#">Bool Factory</h3>
+              <h3 class="border border-dark navbar-toggler text-light" role="button" href="#">Bool Factory</h3>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
-              </button> <!--fine button mobile inizio logo-text-->
-              <div class="collapse navbar-collapse justify-content-between" id="navbarTogglerDemo01">
+              </button>
+              <!--fine button mobile inizio logo-text-->
+              <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
                 <h3 class="collapse navbar-collapse text-light" href="#">Bool Factory</h3>
                 <ul class="navbar-nav"> <!--inizio menu-->
                   <li class="nav-item">
@@ -32,6 +33,53 @@
             </div>
           </nav>
     </header>
+    <main class="container">
+
+      <!--Titolo-->
+
+    <div >
+      <h1 class="mt-4">Richiesta Preventivo</h1>
+      <p class="mt-2">Compila il form per richiedere un preventivo per i nostri servizi di sviluppo. </p>
+    </div>
+
+    <!--Form-->
+        <div class="row">
+          <div class="col-lg-6">
+            <form action="#">
+              <!--Inserimento Nome-->
+            <div>
+              <label for="userName" class="form-label">Nome</label>
+              <input name="userName" id="userName" class="form-control" type="text" aria-label="userName">
+            </div>
+              <!--Inserimento cognome-->
+            <div>
+              <label for="userSurname" class="form-label mt-3">Cognome</label>
+              <input name="userSurname" id="userName" class="form-control" type="text" aria-label="userSurname">
+            </div>
+            <!--inserimento email-->
+            <div>
+              <label for="userEmail" class="form-label">Email address</label>
+              <input name="userEmail" type="email" class="form-control" id="userEmail">
+            </div>
+            <!--Tipo di Lavoro-->
+            <select class="form-select" aria-label="TypeOfWork">
+              <option selected>Seleziona il tipo di Lavoro</option>
+              <option value="backend">Backend Development</option>
+              <option value="frontend">Frontend Development</option>
+              <option value="analysis"> Project Analysis</option>
+            </select>
+
+
+
+            </form>
+
+          </div>
+        </div>
+      </div>
+
+   
+
+    </main>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="./js/main.js"></script>
