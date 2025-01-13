@@ -9,7 +9,7 @@ const typeOfWork = document.querySelector("#typeOfWork")
 const finalPrice = document.querySelector("#finalPrice")
 
 //codici promozionali 
-const promoCode = [ "YHDNU32","JANJC63", "PWKCN25", "SJDPO96"," POCIE24"];
+const promoCode = ["YHDNU32","JANJC63", "PWKCN25", "SJDPO96"," POCIE24"];
 const promotion = document.querySelector("#promotion");
 
 
@@ -17,7 +17,8 @@ const promotion = document.querySelector("#promotion");
 function price (value){
     const result = value * 10;
     const finalResult = `${result.toFixed(2).replace(".", ",")}€`
-    finalPrice.innerHTML += `<p class="fw-bold fs-3"> ${finalResult}</p>`;
+    finalPrice.innerHTML = `${finalResult}`;
+    finalPrice.classList.toggle("d-none")
     return finalResult
 };
 
@@ -25,10 +26,15 @@ function price (value){
 //click
 submitCost.addEventListener("click", function(event){
     event.preventDefault()
+    finalPrice.classList.toggle("d-none")
 
 //trasformo il codice promozionale in maiuscolo e controllo se quello inserito è uno dei codici pomozionali
     const codeValidation = promotion.value.toUpperCase()
     const promo = promoCode.includes(codeValidation)
+    const withoutCode = codeValidation.split()
+    if(withoutCode.length === 0 ){
+        return
+   }
 
 //calcolo sconto
     function discountPrice (value){
@@ -38,12 +44,14 @@ submitCost.addEventListener("click", function(event){
 
 //codice promozionale valido con stampa del preventivo
 function promoValidation (value){
-    if(promo){
-      promotion.classList.add("is-valid")
-      return discountPrice(value);
+    if(!promo){
+      promotion.classList.add("is-invalid")
+       price(value);
+      return 
     }else{
-        promotion.classList.add("is-invalid")
-        return price(value);
+        promotion.classList.add("is-valid")
+        discountPrice(value);
+        return 
     }
 }
 
@@ -59,9 +67,22 @@ if(typeOfWork.value === "backend" && checkPrivacy.checked){
     return promoValidation(33.60)
   }
 
+//Validazione e controllo nome e cognome 
+function validText (value){
+    if(isNaN(value.value)){
+    value.classList.add("is-valid")
+}else{
+    value.classList.add("is-invalid")
+}
+
+}
+const userName = document.querySelector("#userName");
+const nameValidation = validText(userName)
+const userSurname = document.querySelector("#userSurname");
+const surnameValidation = validText(userSurname)
 
 
-//select
+/*//select
 const select = document.querySelector("#select")
 if(typeOfWork.value === "select"){
     typeOfWork.classList.add("is-invalid")
@@ -77,14 +98,13 @@ if(userQuestion){
 }
 
 //check privacy (separato dall'if prezzo/ora piu leggibile)
-
 if(!checkPrivacy.checked){
     checkPrivacy.classList.add("is-invalid")
     return false
 }else{
     checkPrivacy.classList.add("is-valid")
     
-}
+}*/
 
 })
 

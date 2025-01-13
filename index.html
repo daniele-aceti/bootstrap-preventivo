@@ -47,17 +47,17 @@
               <!--Inserimento Nome-->
             <div>
               <label for="userName" class="form-label fw-medium">Nome</label>
-              <input name="name" id="userName" class="form-control" type="text" aria-label="name" required>
+              <input name="name" id="userName" class="form-control" type="text" aria-label="name">
             </div>
               <!--Inserimento cognome-->
             <div class="mt-3">
               <label for="userSurname" class="form-label fw-medium">Cognome</label>
-              <input name="surname" id="userSurname" class="form-control" type="text" aria-label="surname" required>
+              <input name="surname" id="userSurname" class="form-control" type="text" aria-label="surname">
             </div>
             <!--inserimento email-->
             <div class="mt-3">
               <label for="userEmail" class="form-label fw-medium">Email</label>
-              <input name="userEmail" type="email" class="form-control" id="userEmail" required>
+              <input name="userEmail" type="email" class="form-control" id="userEmail">
             </div>
             <!--Tipo di Lavoro-->
               <label for="typeOfWork" class="form-label mt-3 fw-medium">Tipo di Lavoro</label>
@@ -75,11 +75,17 @@
             <!--Codice Promozionale-->
             <div class="mt-3">
               <label for="promotion" class="form-label fw-medium">Codice Promozionale (opzionale)</label>
-              <input name="promotion" type="text" class="form-control" id="promotion">
+              <input name="promotion" type="text" class="form-control" id="promotion" aria-label="promotion">
+              <div class="valid-feedback">
+                Il codice inserito è corretto
+              </div>
+              <div class="invalid-feedback">
+                Il codice inserito non è corretto
+              </div>
             </div>
             <!--Check privacy-->
             <div class="form-check mt-3">
-              <input name="privacyValid" class="form-check-input" type="checkbox" value="checkPrivacy" id="checkPrivacy" required>
+              <input name="privacyValid" class="form-check-input" type="checkbox" value="checkPrivacy" id="checkPrivacy">
               <label class="form-check-label fw-medium" for="checkPrivacy">
                 Accetto la Privacy Policy
               </label>
@@ -89,7 +95,9 @@
               <div>
                 <button id="submitCost" type="button" class="btn btn-primary col-6 col-md-auto mt-5 ">Calcola preventivo</button> 
               </div>
-              <div id="finalPrice" class="fw-bold fs-5 col-7 col-md-auto text-center mt-4 pt-2">Prezzo Finale</div>
+              <div class="fw-bold fs-5 col-7 col-md-auto text-center mt-4 pt-2">Prezzo Finale
+                <p id="finalPrice"  class="fw-bold fs-3">-</p>
+              </div>
             </div>
           </form>
         </div>
