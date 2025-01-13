@@ -25,33 +25,66 @@ function price (value){
 //click
 submitCost.addEventListener("click", function(event){
     event.preventDefault()
-    let priceOfWork = 0;
+
+//trasformo il codice promozionale in maiuscolo e controllo se quello inserito è uno dei codici pomozionali
     const codeValidation = promotion.value.toUpperCase()
     const promo = promoCode.includes(codeValidation)
-  
 
-    //Definizione prezzo/ora e codice promozionale
-    if(typeOfWork.value === "backend"){
-        if(promo){
-            priceOfWork = price(20.50 * (1-25/100));
-        }else{
-            priceOfWork = price(20.50);
-        }
-    }else if(typeOfWork.value  === "frontend"){
-        if(promo){
-            priceOfWork = price(15.30 * (1-25/100));
-        }else{
-            priceOfWork = price(15.30);
-        }
-    }else if(typeOfWork.value  === "analysis"){
-        if(promo){
-            priceOfWork = price(33.60 * (1-25/100));
-        }else{
-            priceOfWork = price(33.60);
-        }
+//calcolo sconto
+    function discountPrice (value){
+        const sale = (1-25/100)
+        return price(value * sale);
     }
 
+//codice promozionale valido con stampa del preventivo
+function promoValidation (value){
+    if(promo){
+      promotion.classList.add("is-valid")
+      return discountPrice(value);
+    }else{
+        promotion.classList.add("is-invalid")
+        return price(value);
+    }
+}
 
+
+const checkPrivacy = document.querySelector("#checkPrivacy")
+
+//Definizione prezzo/ora e codice promozionale, checked (method) da un valore booleano se il checkbox è selezionato o meno 
+if(typeOfWork.value === "backend" && checkPrivacy.checked){
+    return promoValidation(20.50)
+  }else if(typeOfWork.value  === "frontend" && checkPrivacy.checked){
+    return promoValidation(15.30)
+}else if(typeOfWork.value  === "analysis" && checkPrivacy.checked){
+    return promoValidation(33.60)
+  }
+
+
+
+//select
+const select = document.querySelector("#select")
+if(typeOfWork.value === "select"){
+    typeOfWork.classList.add("is-invalid")
+    return false
+}else{
+    typeOfWork.classList.add("is-valid")
+}
+  
+//text-area
+const userQuestion = document.querySelector("#userQuestion");
+if(userQuestion){
+    userQuestion.classList.add("is-valid")
+}
+
+//check privacy (separato dall'if prezzo/ora piu leggibile)
+
+if(!checkPrivacy.checked){
+    checkPrivacy.classList.add("is-invalid")
+    return false
+}else{
+    checkPrivacy.classList.add("is-valid")
+    
+}
 
 })
 

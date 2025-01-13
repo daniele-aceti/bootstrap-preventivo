@@ -47,22 +47,22 @@
               <!--Inserimento Nome-->
             <div>
               <label for="userName" class="form-label fw-medium">Nome</label>
-              <input name="name" id="userName" class="form-control" type="text" aria-label="name">
+              <input name="name" id="userName" class="form-control" type="text" aria-label="name" required>
             </div>
               <!--Inserimento cognome-->
             <div class="mt-3">
               <label for="userSurname" class="form-label fw-medium">Cognome</label>
-              <input name="surname" id="userSurname" class="form-control" type="text" aria-label="surname">
+              <input name="surname" id="userSurname" class="form-control" type="text" aria-label="surname" required>
             </div>
             <!--inserimento email-->
             <div class="mt-3">
               <label for="userEmail" class="form-label fw-medium">Email</label>
-              <input name="userEmail" type="email" class="form-control" id="userEmail">
+              <input name="userEmail" type="email" class="form-control" id="userEmail" required>
             </div>
             <!--Tipo di Lavoro-->
               <label for="typeOfWork" class="form-label mt-3 fw-medium">Tipo di Lavoro</label>
             <select id="typeOfWork" class="form-select" aria-label="typeOfWork">
-              <option selected>Seleziona il tipo di Lavoro</option>
+              <option id="select" value="select" selected>Seleziona il tipo di Lavoro</option>
               <option value="backend">Backend Development</option>
               <option value="frontend">Frontend Development</option>
               <option value="analysis"> Project Analysis</option>
@@ -79,7 +79,7 @@
             </div>
             <!--Check privacy-->
             <div class="form-check mt-3">
-              <input class="form-check-input" type="checkbox" value="checkPrivacy" id="checkPrivacy">
+              <input name="privacyValid" class="form-check-input" type="checkbox" value="checkPrivacy" id="checkPrivacy" required>
               <label class="form-check-label fw-medium" for="checkPrivacy">
                 Accetto la Privacy Policy
               </label>
