@@ -31,10 +31,7 @@ submitCost.addEventListener("click", function(event){
 //trasformo il codice promozionale in maiuscolo e controllo se quello inserito è uno dei codici pomozionali
     const codeValidation = promotion.value.toUpperCase()
     const promo = promoCode.includes(codeValidation)
-    const withoutCode = codeValidation.split()
-    if(withoutCode.length === 0 ){
-        return
-   }
+    
 
 //calcolo sconto
     function discountPrice (value){
@@ -43,69 +40,71 @@ submitCost.addEventListener("click", function(event){
     }
 
 //codice promozionale valido con stampa del preventivo
+
 function promoValidation (value){
-    if(!promo){
-      promotion.classList.add("is-invalid")
-       price(value);
-      return 
+    if(codeValidation.length === 0 ){
+        //non fare niente il valore è opzionale 
+        return price(value)
     }else{
-        promotion.classList.add("is-valid")
-        discountPrice(value);
-        return 
+        if(promo){
+            promotion.classList.add("is-valid") //inserito il codice promozionale corretto
+            return discountPrice(value);
+     
+        }else{
+            promotion.classList.add("is-invalid") //inserito il codice promozionale non corretto
+            return price(value);
+        
+         }
     }
 }
-
 
 const checkPrivacy = document.querySelector("#checkPrivacy")
 
 //Definizione prezzo/ora e codice promozionale, checked (method) da un valore booleano se il checkbox è selezionato o meno 
 if(typeOfWork.value === "backend" && checkPrivacy.checked){
-    return promoValidation(20.50)
-  }else if(typeOfWork.value  === "frontend" && checkPrivacy.checked){
-    return promoValidation(15.30)
-}else if(typeOfWork.value  === "analysis" && checkPrivacy.checked){
-    return promoValidation(33.60)
-  }
+        promoValidation(20.50)
+      }else if(typeOfWork.value  === "frontend" && checkPrivacy.checked){
+    promoValidation(15.30)
+    }else if(typeOfWork.value  === "analysis" && checkPrivacy.checked){
+        promoValidation(33.60)
+      }
 
 //Validazione e controllo nome e cognome 
-function validText (value){
-    if(isNaN(value.value)){
-    value.classList.add("is-valid")
-}else{
-    value.classList.add("is-invalid")
-}
-
-}
+    function validText (value){
+        if(isNaN(value.value)){
+        value.classList.add("is-valid")
+    }else{
+        value.classList.add("is-invalid")
+    }
+   }
 const userName = document.querySelector("#userName");
-const nameValidation = validText(userName)
+    validText(userName)
 const userSurname = document.querySelector("#userSurname");
-const surnameValidation = validText(userSurname)
+    validText(userSurname)
 
-
-/*//select
-const select = document.querySelector("#select")
-if(typeOfWork.value === "select"){
-    typeOfWork.classList.add("is-invalid")
-    return false
-}else{
-    typeOfWork.classList.add("is-valid")
-}
-  
-//text-area
-const userQuestion = document.querySelector("#userQuestion");
-if(userQuestion){
-    userQuestion.classList.add("is-valid")
-}
 
 //check privacy (separato dall'if prezzo/ora piu leggibile)
-if(!checkPrivacy.checked){
-    checkPrivacy.classList.add("is-invalid")
-    return false
-}else{
-    checkPrivacy.classList.add("is-valid")
+    if(!checkPrivacy.checked){
+        checkPrivacy.classList.add("is-invalid")
+    }else{
+        checkPrivacy.classList.add("is-valid")
     
-}*/
+    }
 
+//select
+const select = document.querySelector("#select")
+   if(typeOfWork.value === "select"){
+   typeOfWork.classList.add("is-invalid")
+   }else{ typeOfWork.classList.add("is-valid")
+   }
+
+//email
+const userEmail = document.querySelector("#userEmail")
+   if(userEmail.value.includes("@")){
+       userEmail.classList.add("is-valid")
+   }else{
+       userEmail.classList.add("is-invalid")
+   }
 })
 
     
