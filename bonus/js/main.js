@@ -1,5 +1,3 @@
-//don't repeat yourself
-
 //Dichiarazione ed inizializzazione dei value e del button
 const submitCost = document.querySelector("#submitCost");
 const backend = document.querySelector("#backend");
@@ -8,6 +6,21 @@ const analysis = document.querySelector("#analysis");
 const typeOfWork = document.querySelector("#typeOfWork")
 const finalPrice = document.querySelector("#finalPrice")
 const select = document.querySelector("#select")
+
+//funzioni di validazione e non validazione con la risolizione dell'aggiunta di elementi in errore o in validazione 
+function valid (value){
+    value.classList.add("is-valid")
+    value.classList.remove("is-invalid")
+    finalPrice.classList.remove("d-none")
+}
+
+function invalid (value){
+    value.classList.add("is-invalid")
+    value.classList.remove("is-valid")
+    finalPrice.classList.remove("d-none")
+}
+
+
 
 //BONUS genera dinamicamente le opzioni della select a partire da un oggetto js
 
@@ -65,11 +78,11 @@ function promoValidation (value){
         return price(value)
     }else{
         if(promo){
-            promotion.classList.add("is-valid") //inserito il codice promozionale corretto
+            valid(promotion) //inserito il codice promozionale corretto
             return discountPrice(value);
      
         }else{
-            promotion.classList.add("is-invalid") //inserito il codice promozionale non corretto
+            invalid(promotion) //inserito il codice promozionale non corretto
             return price(value);
         
          }
@@ -90,9 +103,9 @@ if(typeOfWork.value === "backend" && checkPrivacy.checked){
 //Validazione e controllo nome e cognome 
     function validText (value){
         if(isNaN(value.value)){
-        value.classList.add("is-valid")
+        valid(value)
     }else{
-        value.classList.add("is-invalid")
+        invalid(value)
     }
    }
 const userName = document.querySelector("#userName");
@@ -103,24 +116,25 @@ const userSurname = document.querySelector("#userSurname");
 
 //check privacy (separato dall'if prezzo/ora piu leggibile)
     if(!checkPrivacy.checked){
-        checkPrivacy.classList.add("is-invalid")
+        invalid(checkPrivacy)
     }else{
-        checkPrivacy.classList.add("is-valid")
+        valid(checkPrivacy)
     
     }
 
 //select
    if(typeOfWork.value === "select"){
-   typeOfWork.classList.add("is-invalid")
-   }else{ typeOfWork.classList.add("is-valid")
+      invalid(typeOfWork)
+   }else{ 
+      valid(typeOfWork)
    }
 
 //email
 const userEmail = document.querySelector("#userEmail")
    if(userEmail.value.includes("@")){
-       userEmail.classList.add("is-valid")
+       valid(userEmail)
    }else{
-       userEmail.classList.add("is-invalid")
+       invalid(userEmail)
    }
 
 })
