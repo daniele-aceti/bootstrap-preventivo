@@ -11,13 +11,15 @@ const promoCode = ["YHDNU32","JANJC63", "PWKCN25", "SJDPO96"," POCIE24"];
 const promotion = document.querySelector("#promotion");
 
 
-//Funzione per calcolare il prezzo e trasformarlo in forma unmana
+//Funzione per calcolare il prezzo e trasformarlo in forma unmana manipolazione del prezzo per far diventare i numeri dopo la virgola grigi
 function price (value){
     const result = value * 10;
     const finalResult = `${result.toFixed(2).replace(".", ",")}€`
-    finalPrice.innerHTML = `${finalResult}`;
-    finalPrice.classList.toggle("d-none")
-    return finalResult
+    const point = finalResult.indexOf(",") //l'indice della virgola non è sempre uguale (centinaia di euro, migliaia di euro ecc)
+    const changeColorText = finalResult.substring(point) //substring con un parametro parte da quell'indice fino alla fine
+    finalPrice.innerHTML =`${finalResult.slice(0, point)}<span class="fw-normal text-secondary fs-3">${changeColorText}</span>`//slice "da" "a"
+    finalPrice.classList.toggle("d-none") 
+    return
 };
 
 //funzioni di validazione e non validazione con la risolizione dell'aggiunta di elementi in errore o in validazione 
