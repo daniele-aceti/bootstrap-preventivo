@@ -1,4 +1,4 @@
-//Dichiarazione ed inizializzazione dei value e del button
+//Dichiarazione ed inizializzazione dei value-input e del button
 const submitCost = document.querySelector("#submitCost");
 const backend = document.querySelector("#backend");
 const frontend = document.querySelector("#frontend");
@@ -49,7 +49,7 @@ function price (value){
     const finalResult = `${result.toFixed(2).replace(".", ",")}€`
     const point = finalResult.indexOf(",") //l'indice della virgola non è sempre uguale (centinaia di euro, migliaia di euro ecc)
     const changeColorText = finalResult.substring(point) //substring con un parametro parte da quell'indice fino alla fine
-    finalPrice.innerHTML =`${finalResult.substring(0, point)}<span class="fw-normal text-secondary fs-3">${changeColorText}</span>`//slice "da" "a" 
+    finalPrice.innerHTML =`${finalResult.substring(0, point)}<span class="fw-normal text-secondary fs-3">${changeColorText}</span>`//substring "da" "a" 
     finalPrice.classList.toggle("d-none") 
     return
 };
