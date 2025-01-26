@@ -18,7 +18,6 @@ function price (value){
     const point = finalResult.indexOf(",") //l'indice della virgola non è sempre uguale (centinaia di euro, migliaia di euro ecc)
     const changeColorText = finalResult.substring(point) //substring con un parametro parte da quell'indice fino alla fine
     finalPrice.innerHTML =`${finalResult.substring(0, point)}<span class="fw-normal text-secondary fs-3">${changeColorText}</span>`//substring "da" "a"
-    finalPrice.classList.toggle("d-none") 
     return
 };
 
@@ -26,19 +25,16 @@ function price (value){
 function valid (value){
     value.classList.add("is-valid")
     value.classList.remove("is-invalid")
-    finalPrice.classList.remove("d-none")
 }
 
 function invalid (value){
     value.classList.add("is-invalid")
     value.classList.remove("is-valid")
-    finalPrice.classList.remove("d-none")
 }
 
 //click
 submitCost.addEventListener("click", function(event){
     event.preventDefault()
-    finalPrice.classList.toggle("d-none")
 
 //trasformo il codice promozionale in maiuscolo e controllo se quello inserito è uno dei codici pomozionali
     const codeValidation = promotion.value.toUpperCase()
