@@ -5,7 +5,7 @@ const frontend = document.querySelector("#frontend");
 const analysis = document.querySelector("#analysis");
 const typeOfWork = document.querySelector("#typeOfWork")
 const finalPrice = document.querySelector("#finalPrice")
-const select = document.querySelector("#select")
+
 
 //funzioni di validazione e non validazione con la risolizione dell'aggiunta di elementi in errore o in validazione 
 function valid (value){
@@ -48,8 +48,7 @@ function price (value){
     const point = finalResult.indexOf(",") //l'indice della virgola non è sempre uguale (centinaia di euro, migliaia di euro ecc)
     const changeColorText = finalResult.substring(point) //substring con un parametro parte da quell'indice fino alla fine
     finalPrice.innerHTML =`${finalResult.substring(0, point)}<span class="fw-normal text-secondary fs-3">${changeColorText}</span>`//substring "da" "a" 
-    return
-};
+}
 
 
 //click
@@ -72,6 +71,8 @@ submitCost.addEventListener("click", function(event){
 function promoValidation (value){
     if(codeValidation.length === 0 ){
         //non fare niente il valore è opzionale 
+        promotion.classList.remove("is-valid")
+        promotion.classList.remove("is-invalid")
         return price(value)
     }else{
         if(promo){
@@ -112,16 +113,17 @@ const userSurname = document.querySelector("#userSurname");
 
 
 //check privacy (separato dall'if prezzo/ora piu leggibile)
-    if(!checkPrivacy.checked){
-        invalid(checkPrivacy)
-    }else{
+    if(checkPrivacy.checked){
         valid(checkPrivacy)
-    
+    }else{
+       invalid(checkPrivacy)
+       finalPrice.innerHTML = "-"    
     }
 
 //select
    if(typeOfWork.value === "select"){
       invalid(typeOfWork)
+      finalPrice.innerHTML = "-"
    }else{ 
       valid(typeOfWork)
    }
