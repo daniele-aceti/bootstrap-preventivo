@@ -6,20 +6,6 @@ const analysis = document.querySelector("#analysis");
 const typeOfWork = document.querySelector("#typeOfWork")
 const finalPrice = document.querySelector("#finalPrice")
 
-
-//funzioni di validazione e non validazione con la risolizione dell'aggiunta di elementi in errore o in validazione 
-function valid (value){
-    value.classList.add("is-valid")
-    value.classList.remove("is-invalid")
-}
-
-function invalid (value){
-    value.classList.add("is-invalid")
-    value.classList.remove("is-valid")
-}
-
-
-
 //BONUS genera dinamicamente le opzioni della select a partire da un oggetto js
 
 const jobList = [{
@@ -36,9 +22,19 @@ const jobList = [{
         typeOfWork.innerHTML += `<option value="${Object.keys(element)}">${Object.values(element)}</option>` 
 }
 
-//codici promozionali 
+
+//click
+submitCost.addEventListener("click", function(event){
+    event.preventDefault()
+
+ //codici promozionali 
 const promoCode = ["YHDNU32","JANJC63", "PWKCN25", "SJDPO96"," POCIE24"];
 const promotion = document.querySelector("#promotion");
+
+
+//trasformo il codice promozionale in maiuscolo e controllo se quello inserito è uno dei codici pomozionali
+    const codeValidation = promotion.value.toUpperCase()
+    const promo = promoCode.includes(codeValidation)
 
 
 //Funzione per calcolare il prezzo e trasformarlo in forma unmana manipolazione del prezzo per far diventare i numeri dopo la virgola grigi
@@ -51,20 +47,24 @@ function price (value){
 }
 
 
-//click
-submitCost.addEventListener("click", function(event){
-    event.preventDefault()
-
-//trasformo il codice promozionale in maiuscolo e controllo se quello inserito è uno dei codici pomozionali
-    const codeValidation = promotion.value.toUpperCase()
-    const promo = promoCode.includes(codeValidation)
-    
 
 //calcolo sconto
     function discountPrice (value){
         const sale = (1-25/100)
         return price(value * sale);
     }
+
+//funzioni di validazione e non validazione con la risolizione dell'aggiunta di elementi in errore o in validazione 
+function valid (value){
+    value.classList.add("is-valid")
+    value.classList.remove("is-invalid")
+}
+
+function invalid (value){
+    value.classList.add("is-invalid")
+    value.classList.remove("is-valid")
+}
+
 
 //codice promozionale valido con stampa del preventivo
 
@@ -112,14 +112,6 @@ const userSurname = document.querySelector("#userSurname");
     validText(userSurname)
 
 
-//check privacy (separato dall'if prezzo/ora piu leggibile)
-    if(checkPrivacy.checked){
-        valid(checkPrivacy)
-    }else{
-       invalid(checkPrivacy)
-       finalPrice.innerHTML = "-"    
-    }
-
 //select
    if(typeOfWork.value === "select"){
       invalid(typeOfWork)
@@ -136,6 +128,15 @@ const userEmail = document.querySelector("#userEmail")
        invalid(userEmail)
    }
 
+
+  //check privacy (separato dall'if prezzo/ora piu leggibile)
+    if(checkPrivacy.checked){
+        valid(checkPrivacy)
+    }else{
+       invalid(checkPrivacy)
+       finalPrice.innerHTML = "-"    
+    }
+ 
 })
 
     
