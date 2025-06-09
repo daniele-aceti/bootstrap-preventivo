@@ -1,5 +1,7 @@
 # 🧾 Preventivo - Form Responsive
 
+📅 Ultimo aggiornamento 27/01/2025
+
 **HTML** • **CSS** • **Bootstrap** • **JavaScript**
 
 > Semplice pagina web per la simulazione di un modulo preventivo, realizzata con layout responsive tramite Bootstrap e validazione lato client.
